@@ -25,11 +25,17 @@ requests
 crunchyroll
 youtube-dl
 ```
-This can be installed with the following command.
+This can be installed with the following command on linux.
 
 ```
 sudo pip3 install tlslite requests crunchyroll youtube-dl
 ```
+If you don't have pip3 installed on Ubuntu run this: 
+```
+sudo apt update
+sudo apt install python3-pip
+```
+
 
 ## Authors
 
