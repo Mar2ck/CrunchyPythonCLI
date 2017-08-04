@@ -23,11 +23,12 @@ In order to get the game running you will need to install these python packages.
 tlslite
 requests
 crunchyroll
+youtube-dl
 ```
 This can be installed with the following command.
 
 ```
-sudo pip3 install tlslite requests crunchyroll
+sudo pip3 install tlslite requests crunchyroll youtube-dl
 ```
 
 ## Authors
