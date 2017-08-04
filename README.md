@@ -9,7 +9,7 @@ git clone https://github.com/Mar2ck/CrunchyPythonCLI/
 ```
 You will need to install the packages written in the [requirements.](https://github.com/Mar2ck/CrunchyPythonCLI/blob/master/requirements.txt) After you have installed the requirements you can run the base [program.](https://github.com/Mar2ck/CrunchyPythonCLI/blob/master/src/main.py)
 
-You should open the bot and the game with these commands.
+You should open the program with:
 
 ```
 python3 main.py
@@ -17,7 +17,7 @@ python3 main.py
 
 ## Prerequisites
 
-In order to get the game running you will need to install these packages.
+In order to get the program running you will need to install these packages.
 
 ```
 tlslite
