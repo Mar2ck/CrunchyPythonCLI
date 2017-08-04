@@ -3,11 +3,9 @@ from crunchyroll.apis.meta import MetaApi
 api = MetaApi()
 
 #The main code.
-
-print(crunchyLoginOutput)
-if crunchyLoginOutput == "True":
 CRUsername = input("Crunchyroll Username: ") #Asks the user to enter their username.
 CRPassword = input("Crunchyroll Password: ") #Asks the user to enter their password.
+
 crunchyLoginOutput = api.login(username=CRUsername, password=CRPassword) # Logs into Crunchyroll
 
 if crunchyLoginOutput == "True": #If the crunchyLoginOutput returns True, it'll print that is successful.
