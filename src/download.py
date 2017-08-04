@@ -2,10 +2,13 @@
 from requests import session
 import cfscrape
 
+CRUsername = input("Crunchyroll Username: ") #Asks the user to enter their username.
+CRPassword = input("Crunchyroll Password: ") #Asks the user to enter their password.
+
 payload = {
     'action': 'login',
-    'username': 'Mar2ck',
-    'password': 'RingWomenBookSymbols'
+    'username': CRUsername,
+    'password': CRPassword
 }
 
 with cfscrape.create_scraper() as s:
