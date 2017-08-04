@@ -1,2 +1,3 @@
 tlslite
 requests
+crunchyroll

@@ -22,18 +22,19 @@ In order to get the game running you will need to install these python packages.
 ```
 tlslite
 requests
+crunchyroll
 ```
 This can be installed with the following command.
 
 ```
-sudo pip3 install tlslite requests
+sudo pip3 install tlslite requests crunchyroll
 ```
 
 ## Authors
 
-* **Mar2ck** - *Creator of the project.* - [subpanda101](https://github.com/subpanda101)
+* **Mar2ck** - *Creator of the project.* - [subpanda101](https://github.com/Mar2ck)
 
-* **Brandon - Lee Dodds** - *Cool contributor and total bro* - [subpanda101](https://github.com/subpanda101)
+* **Brandon - Lee Dodds** - *Cool contributor and total bro.* - [subpanda101](https://github.com/subpanda101)
 
 
 
