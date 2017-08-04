@@ -7,7 +7,7 @@ In order to get started git clone this project in a directory using the command:
 ```
 git clone https://github.com/Mar2ck/CrunchyPythonCLI/tree/master
 ```
-You will need to install the packages written in the [requirements.](https://github.com/subpanda101/SnakeMachineLearning/blob/master/requirements.txt) After you have installed the requirements you can run the base [game.](https://github.com/subpanda101/SnakeMachineLearning/blob/master/src/SnakeMachineLearning.py) Then afterwards open the bot.
+You will need to install the packages written in the [requirements.](https://github.com/Mar2ck/CrunchyPythonCLI/blob/master/requirements.txt) After you have installed the requirements you can run the base [program.](https://github.com/Mar2ck/CrunchyPythonCLI/blob/master/src/main.py)
 
 You should open the bot and the game with these commands.
 
@@ -31,7 +31,9 @@ sudo pip3 install tlslite requests
 
 ## Authors
 
-* **Brandon - Lee Dodds** - *Creator of the project.* - [subpanda101](https://github.com/subpanda101)
+* **Mar2ck** - *Creator of the project.* - [subpanda101](https://github.com/subpanda101)
+
+* **Brandon - Lee Dodds** - *Cool contributor and total bro* - [subpanda101](https://github.com/subpanda101)
 
 
 
