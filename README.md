@@ -42,7 +42,7 @@ See also the list of [contributors](https://github.com/Mar2ck/CrunchyPythonCLI/g
 
 ## Contribution
 
-If you are looking to contribute; remember to read the [contribution file.](https://github.com/Mar2ck/CrunchyPythonCLI/blob/master/CONTRIBUTION)
+If you are looking to contribute; remember to read the [contribution file.](https://github.com/Mar2ck/CrunchyPythonCLI/blob/master/CONTRIBUTION.md)
 
 ## License
 
