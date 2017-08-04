@@ -40,6 +40,10 @@ sudo pip3 install tlslite requests crunchyroll
 
 See also the list of [contributors](https://github.com/Mar2ck/CrunchyPythonCLI/graphs/contributors) who participated in this project.
 
+## Contribution
+
+If you are looking to contribute; remember to read the [contribution file.](https://github.com/Mar2ck/CrunchyPythonCLI/blob/master/CONTRIBUTION)
+
 ## License
 
 This project is licensed under the GNU General Public License - see the [LICENSE.md](https://github.com/Mar2ck/CrunchyPythonCLI/blob/master/LICENSE) file for details
