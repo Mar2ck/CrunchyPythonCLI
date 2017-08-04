@@ -5,7 +5,7 @@ This is going to be a Crunchyroll API application written in python. This isn't 
 
 In order to get started git clone this project in a directory using the command:
 ```
-git clone https://github.com/Mar2ck/CrunchyPythonCLI/tree/master
+git clone https://github.com/Mar2ck/CrunchyPythonCLI/
 ```
 You will need to install the packages written in the [requirements.](https://github.com/Mar2ck/CrunchyPythonCLI/blob/master/requirements.txt) After you have installed the requirements you can run the base [program.](https://github.com/Mar2ck/CrunchyPythonCLI/blob/master/src/main.py)
 
@@ -42,4 +42,4 @@ See also the list of [contributors](https://github.com/Mar2ck/CrunchyPythonCLI/g
 
 ## License
 
-This project is licensed under the GNU General Public License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GNU General Public License - see the [LICENSE.md](https://github.com/Mar2ck/CrunchyPythonCLI/blob/master/LICENSE) file for details
