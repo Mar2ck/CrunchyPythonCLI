@@ -1,3 +1,4 @@
 tlslite
 requests
 crunchyroll
+youtube-dl
