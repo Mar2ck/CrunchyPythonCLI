@@ -15,25 +15,28 @@ You should open the bot and the game with these commands.
 python3 main.py
 ```
 
-### Prerequisites
+## Prerequisites
 
-In order to get the game running you will need to install these python packages.
+In order to get the game running you will need to install these packages.
 
 ```
 tlslite
 requests
 crunchyroll
 youtube-dl
+cfscrape
+node.js
 ```
-This can be installed with the following command on linux.
+The Python packages can be installed with the following command (delete the "sudo" on Windows):
 
 ```
-sudo pip3 install tlslite requests crunchyroll youtube-dl
+sudo pip3 install tlslite requests crunchyroll youtube-dl cfscrape
 ```
-If you don't have pip3 installed on Ubuntu run this: 
+
+Node-JS is also needed and can be installed on Debian-based distros with this: 
 ```
 sudo apt update
-sudo apt install python3-pip
+sudo apt install nodejs
 ```
 
 
@@ -41,7 +44,7 @@ sudo apt install python3-pip
 
 * **Mar2ck** - *Creator of the project.* - [subpanda101](https://github.com/Mar2ck)
 
-* **Brandon - Lee Dodds** - *Cool contributor and total bro.* - [subpanda101](https://github.com/subpanda101)
+* **Brandon - Lee Dodds** - *Cool contributor and total wanker.* - [subpanda101](https://github.com/subpanda101)
 
 
 
