@@ -17,4 +17,4 @@ userSearchInput = input("Search for a show: ") #Asks the user to input what show
 userSearchOutput = api.search_anime_series(userSearchInput)
 
 for names in range(len(userSearchOutput)):
-    print("Show number {0}: ".format(names) + userSearchOutput[names].name)
+    print("Show number {0}: ".format(names + 1) + userSearchOutput[names].name)
