@@ -2,3 +2,5 @@ tlslite
 requests
 crunchyroll
 youtube-dl
+cfscrape
+pyexecjs
