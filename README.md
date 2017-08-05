@@ -9,33 +9,42 @@ git clone https://github.com/Mar2ck/CrunchyPythonCLI/
 ```
 You will need to install the packages written in the [requirements.](https://github.com/Mar2ck/CrunchyPythonCLI/blob/master/requirements.txt) After you have installed the requirements you can run the base [program.](https://github.com/Mar2ck/CrunchyPythonCLI/blob/master/src/main.py)
 
-You should open the bot and the game with these commands.
+You should open the program with:
 
 ```
 python3 main.py
 ```
 
-### Prerequisites
+## Prerequisites
 
-In order to get the game running you will need to install these python packages.
+In order to get the program running you will need to install these packages.
 
 ```
 tlslite
 requests
 crunchyroll
 youtube-dl
+cfscrape
+node.js
 ```
-This can be installed with the following command.
+The Python packages can be installed with the following command (delete the "sudo" on Windows):
 
 ```
-sudo pip3 install tlslite requests crunchyroll youtube-dl
+sudo pip3 install tlslite requests crunchyroll youtube-dl cfscrape
 ```
+
+Node-JS is also needed and can be installed on Debian-based distros with this: 
+```
+sudo apt update
+sudo apt install nodejs
+```
+
 
 ## Authors
 
 * **Mar2ck** - *Creator of the project.* - [subpanda101](https://github.com/Mar2ck)
 
-* **Brandon - Lee Dodds** - *Cool contributor and total bro.* - [subpanda101](https://github.com/subpanda101)
+* **Brandon - Lee Dodds** - *Cool contributor and total wanker.* - [subpanda101](https://github.com/subpanda101)
 
 
 

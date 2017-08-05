@@ -1,6 +1,8 @@
+#!/usr/bin/env python3
 #Created on 04/08/2017. All the background stuff is here.
 from crunchyroll.apis.meta import MetaApi
 api = MetaApi()
+
 
 #The main code.
 CRUsername = input("Crunchyroll Username: ") #Asks the user to enter their username.
@@ -16,5 +18,6 @@ crunchyLoginOutput = api.login(username=CRUsername, password=CRPassword) # Logs 
 userSearchInput = input("Search for a show: ") #Asks the user to input what show they want to look for.
 userSearchOutput = api.search_anime_series(userSearchInput)
 
+print("")
 for names in range(len(userSearchOutput)):
     print("Show number {0}: ".format(names + 1) + userSearchOutput[names].name) #Prints out the show with a show number.
