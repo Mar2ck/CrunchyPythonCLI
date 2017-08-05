@@ -1,23 +1,18 @@
 #!/usr/bin/env python3
-from requests import session
 import cfscrape
 
 CRUsername = input("Crunchyroll Username: ") #Asks the user to enter their username.
 CRPassword = input("Crunchyroll Password: ") #Asks the user to enter their password.
 
 payload = {
-    'action': 'login',
-    'username': CRUsername,
+    'name': CRUsername,
     'password': CRPassword
 }
 
 with cfscrape.create_scraper() as s:
-    p = s.get("https://www.crunchyroll.com/login")
-    p = s.post("https://www.crunchyroll.com/login", data=payload)
-    print(p.content)
-
-#with session() as c:
-#    c.post('https://www.crunchyroll.com/login', data=payload)
-#    response = c.get('http://www.crunchyroll.com/home/queue')
-#    print(response.headers)
-#    print(response.text)
+    p = s.get("https://m.crunchyroll.com/login")
+    p = s.post("https://m.crunchyroll.com/?a=formhandler", data=payload)
+    print(p.text)
+    
+    #r = s.get("http://www.crunchyroll.com/home/queue")
+    #print (r.text)
