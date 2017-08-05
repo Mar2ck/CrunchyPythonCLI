@@ -33,7 +33,12 @@ if confirmation == "yes": #If yes it will return the episodes.
     ep = [e for e in userEpisodes if e.episode_number == episodeInput][0] #Simple list comprehension, returns the actual episode the user is trying to view.
     theURLForTheStream = ep.url
     print(theURLForTheStream)
-    ydl_opts = {}
+    ydl_opts = {
+        "simulate" : False,
+        "subtitlesformat" : "ass",
+        "subtitleslangs" : ['enUS'],
+        "writesubtitles" : True
+    }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([theURLForTheStream])
 
