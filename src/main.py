@@ -29,11 +29,13 @@ if confirmation == "yes": #If yes it will return the episodes.
     print("These are the list of episodes available to watch. \n")
     userEpisodes = api.list_media(userSearchOutput[userResultInput - 1]) #Lists the media of the series they are trying to watch.
     for x in userEpisodes:
-        print("{0}: {1}".format(x.episode_number, x.name)) #Prints the available list of episodes.
+        print("{0}| {1}".format(x.episode_number, x.name)) #Prints the available list of episodes.
     episodeInput = input("What episode do you want to watch?: ")
     ep = [e for e in userEpisodes if e.episode_number == episodeInput][0] #Simple list comprehension, returns the actual episode the user is trying to view.
-    episodeConfirmation = input("Is |{0}|{1}| the episode you want to watch?: ".format(ep.episode_number, ep.name)) # Confirms if it is the right episode.
-    #TODO I need to get the stream from the episode.
+    episodeConfirmation = input("Is |{0} ~ {1}| the episode you want to watch?: ".format(ep.episode_number, ep.name)).lower() # Confirms if it is the right episode.
+
+    if episodeConfirmation == "yes":
+        stream = api.get_media_stream(ep, 103, 62)
 
 else: #Else it will print bye and quit.
     print("Bye bye")
