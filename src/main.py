@@ -4,7 +4,11 @@ from __future__ import unicode_literals
 from crunchyroll.apis.meta import MetaApi
 import cfscrape
 import youtube_dl
+import sys
+
+commandLineArguments = sys.argv
 api = MetaApi()
+simulateBoolean = False #Command line argument for debuging youtube-dl
 
 doLoginOrNot = input("Do you want to login: ")
 if doLoginOrNot == "yes":
@@ -24,6 +28,9 @@ for names in range(len(userSearchOutput)):
 userResultInput = int(input("Please enter the show number of the show you would like to watch: ")) #Asks the user to input the show number.
 confirmation = input("Are you sure that {0} is the anime you want to watch?: ".format(userSearchOutput[userResultInput - 1].name)).lower() #Asks the user if the show that they want to watch is correct, returns it in a lower case format.
 
+if "--simulate" in commandLineArguments:
+    simulateBoolean = True
+
 if confirmation == "yes": #If yes it will return the episodes.
     print("These are the list of episodes available to watch. \n")
     userEpisodes = api.list_media(userSearchOutput[userResultInput - 1]) #Lists the media of the series they are trying to watch.
@@ -34,10 +41,11 @@ if confirmation == "yes": #If yes it will return the episodes.
     theURLForTheStream = ep.url
     print(theURLForTheStream)
     ydl_opts = {
-        "simulate" : False,
+        "simulate" : simulateBoolean,
         "subtitlesformat" : "ass",
         "subtitleslangs" : ['enUS'],
-        "writesubtitles" : True
+        "writesubtitles" : True,
+        "forcetitle" : True
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([theURLForTheStream])
