@@ -33,7 +33,7 @@ The Python packages can be installed with the following command (delete the "sud
 sudo pip3 install tlslite requests crunchyroll youtube-dl cfscrape
 ```
 
-Node-JS is also needed and can be installed on Debian-based distros with this: 
+Node-JS is also needed and can be installed on Debian-based distros with this:
 ```
 sudo apt update
 sudo apt install nodejs
@@ -42,9 +42,9 @@ sudo apt install nodejs
 
 ## Authors
 
-* **Mar2ck** - *Creator of the project.* - [subpanda101](https://github.com/Mar2ck)
+* **Mar2ck** - *Creator of the project.* - [Mar2ck](https://github.com/Mar2ck)
 
-* **Brandon - Lee Dodds** - *Cool contributor and total wanker.* - [subpanda101](https://github.com/subpanda101)
+* **Brandon - Lee Dodds** - *Cool contributor.* - [subpanda101](https://github.com/subpanda101)
 
 
 
