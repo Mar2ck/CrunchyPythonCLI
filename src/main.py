@@ -54,7 +54,7 @@ while showResultsSelectionCorrect == False:
     try:
         userResultInput = int(input("Please enter the show number of the show you would like to watch: ")) #Asks the user to input the show number.
     except:
-        print("Number entered is not valid, try again")
+        print("Number entered or their is an error, please try again.")
     else:
         showResultsSelectionCorrect = True
 
