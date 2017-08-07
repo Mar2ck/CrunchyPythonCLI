@@ -14,6 +14,7 @@ simulateDownloadBoolean = False
 crunchyrollLoginAttempt = False
 showResultsSelectionCorrect = False
 doLoginOrNot = False
+showSearchSuccess = False
 
 #Command line argument for debugging
 if "--simulate" in commandLineArguments:
@@ -41,8 +42,10 @@ else:
     print("User not authorized. To gain premium user benefits launch with command line \"--auth\"\n")
 
 #Search for a show
-userSearchInput = input("Search for a show: ")
-userSearchOutput = api.search_anime_series(userSearchInput)
+while showSearchSuccess == False:
+    userSearchInput = input("Search for a show: ")
+    userSearchOutput = api.search_anime_series(userSearchInput)
+    print(userSearchOutput)
 
 print("\n")
 
