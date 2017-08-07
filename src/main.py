@@ -32,14 +32,14 @@ if doLoginOrNot == True:
         CRPassword = input("Crunchyroll Password: ")
         try:
             crunchyLoginOutput = api.login(username=CRUsername, password=CRPassword)
-        except:
+        except Exception as e:
             print("Login Error\n\nTry again to login")
         else:
             print("Login Success")
             crunchyrollLoginAttempt = True
 else:
     print("User not authorized. To gain premium user benefits launch with command line \"--auth\"\n")
-        
+
 #Search for a show
 userSearchInput = input("Search for a show: ")
 userSearchOutput = api.search_anime_series(userSearchInput)
@@ -51,7 +51,7 @@ while showResultsSelectionCorrect == False:
         print("Show number {0}: ".format(names + 1) + userSearchOutput[names].name) #Prints out the show with a show number.
     try:
         userResultInput = int(input("Please enter the show number of the show you would like to watch: ")) #Asks the user to input the show number.
-    except ValueError:
+    except Exception as e:
         print("Number entered is not valid, try again")
     else:
         showResultsSelectionCorrect = True
