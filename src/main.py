@@ -26,6 +26,18 @@ if "--help" in commandLineArguments:
     #print("Test help")
     quit()
 
+for i in commandLineArguments[1:]:
+    if i == "--simulate":
+        simulateDownloadBoolean = True
+    elif i == "--auth":
+        doLoginOrNot = True
+    elif i == "--help":
+        #Todo: Write out all availiable command line arguments
+        #print("Test help")
+        quit()
+    else:
+        print("Unrecognised argument " + i + "\n")
+
 #User Authentication
 if doLoginOrNot == True:
     while crunchyrollLoginAttempt == False: #Asks user for Crunchyroll credentials and passes these to api so user can be authenticated
@@ -50,13 +62,13 @@ while showSearchSuccess == False:
     else:
         showSearchSuccess = True
 
-print("\n")
-
 while showResultsSelectionCorrect == False:
+    print("\nSearch Results:")
     for names in range(len(userSearchOutput)):
-        print("Show number {0}: ".format(names + 1) + userSearchOutput[names].name) #Prints out the show with a show number.
+        print("[{0}]: ".format(names + 1) + userSearchOutput[names].name) #Prints out the show with a show number.
+    showResultsSelectionNumber = input("Please enter the show number of the show you would like to watch: ")
     try:
-        userResultInput = int(input("Please enter the show number of the show you would like to watch: ")) #Asks the user to input the show number.
+        userResultInput = int(showResultsSelectionNumber) #Asks the user to input the show number.
     except:
         print("Number entered or their is an error, please try again.")
     else:
