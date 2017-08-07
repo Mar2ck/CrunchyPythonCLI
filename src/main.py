@@ -12,9 +12,9 @@ simulateDownloadBoolean = False
 
 #Loop variables
 crunchyrollLoginAttempt = False
+showSearchSuccess = False
 showResultsSelectionCorrect = False
 doLoginOrNot = False
-showSearchSuccess = False
 
 #Command line argument for debugging
 if "--simulate" in commandLineArguments:
@@ -33,7 +33,7 @@ if doLoginOrNot == True:
         CRPassword = input("Crunchyroll Password: ")
         try:
             crunchyLoginOutput = api.login(username=CRUsername, password=CRPassword)
-        except Exception as e:
+        except:
             print("Login Error\n\nTry again to login")
         else:
             print("Login Success")
@@ -45,7 +45,10 @@ else:
 while showSearchSuccess == False:
     userSearchInput = input("Search for a show: ")
     userSearchOutput = api.search_anime_series(userSearchInput)
-    print(userSearchOutput)
+    if len(userSearchOutput) == 0:
+        print("There was no shows with your search.\n\nTry again to search")
+    else:
+        showSearchSuccess = True
 
 print("\n")
 
@@ -54,8 +57,8 @@ while showResultsSelectionCorrect == False:
         print("Show number {0}: ".format(names + 1) + userSearchOutput[names].name) #Prints out the show with a show number.
     try:
         userResultInput = int(input("Please enter the show number of the show you would like to watch: ")) #Asks the user to input the show number.
-    except Exception as e:
-        print("Number entered is not valid, try again")
+    except:
+        print("Number entered or their is an error, please try again.")
     else:
         showResultsSelectionCorrect = True
 
@@ -69,15 +72,14 @@ if confirmation == "yes": #If yes it will return the episodes.
     episodeNumberInput = input("What episode number do you want to watch?: ")
     episodeNameInput = input("If there are two episodes with the same number that you are trying to watch, please input their name: ")
 
-    def returnEpisodeURL(episodeNumber, episodeName):
-        if episodeName == "":
-            ep = [e for e in userEpisodes if e.episode_number == episodeNumber][0] #Simple list comprehension, returns the actual episode the user is trying to view.
-            return ep.url
-        else:
-            ep = [e for e in userEpisodes if e.episode_number == episodeNumber and e.name == episodeName][0] #Simple list comprehension, returns the actual episode the user is trying to view.
-            return ep.url
+    if episodeName == "":
+        ep = [e for e in userEpisodes if e.episode_number == episodeNumber][0] #Simple list comprehension, returns the actual episode the user is trying to view.
+        episodeURL = ep.url
+    else:
+        ep = [e for e in userEpisodes if e.episode_number == episodeNumber and e.name == episodeName][0] #Simple list comprehension, returns the actual episode the user is trying to view.
+        episodeURL = ep.url
 
-    theURLForTheStream = returnEpisodeURL(episodeNumberInput, episodeNameInput)
+    theURLForTheStream = episodeURL
     ydl_opts = {
         "simulate" : simulateDownloadBoolean,
         "subtitlesformat" : "ass",
