@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from crunchyroll.apis.meta import MetaApi
 import youtube_dl
 import sys
+import getpass
 
 #Starting variables
 commandLineArguments = sys.argv
@@ -33,7 +34,7 @@ for i in commandLineArguments[1:]:
 if doLoginOrNot == True:
     while crunchyrollLoginAttempt == False: #Asks user for Crunchyroll credentials and passes these to api so user can be authenticated
         CRUsername = input("Crunchyroll Username: ")
-        CRPassword = input("Crunchyroll Password: ")
+        CRPassword = getpass.getpass("Crunchyroll Password: ")
         try:
             crunchyLoginOutput = api.login(username=CRUsername, password=CRPassword)
         except:
