@@ -2,36 +2,59 @@
 #Created on 04/08/2017. All the background stuff is here.
 from __future__ import unicode_literals
 from crunchyroll.apis.meta import MetaApi
-import cfscrape
 import youtube_dl
 import sys
 
+#Starting variables
 commandLineArguments = sys.argv
 api = MetaApi()
-simulateBoolean = False #Command line argument for debuging youtube-dl
+simulateDownloadBoolean = False
 
+#Loop variables
+crunchyrollLoginAttempt = False
+showResultsSelectionCorrect = False
+doLoginOrNot = False
+
+#Command line argument for debugging
 if "--simulate" in commandLineArguments:
-    simulateBoolean = True
+    simulateDownloadBoolean = True
+if "--auth" in commandLineArguments:
+    doLoginOrNot = True
+if "--help" in commandLineArguments:
+    #Todo: Write out all availiable command line arguments
+    #print("Test help")
+    quit()
 
-doLoginOrNot = input("Do you want to login: ")
-if doLoginOrNot == "yes":
-    #The main code.
-    CRUsername = input("Crunchyroll Username: ") #Asks the user to enter their username.
-    CRPassword = input("Crunchyroll Password: ") #Asks the user to enter their password.
-
-    crunchyLoginOutput = api.login(username=CRUsername, password=CRPassword) # Logs into Crunchyroll
-
-userSearchInput = input("Search for a show: ") #Asks the user to input what show they want to look for.
+#User Authentication
+if doLoginOrNot == True:
+    while crunchyrollLoginAttempt == False: #Asks user for Crunchyroll credentials and passes these to api so user can be authenticated
+        CRUsername = input("Crunchyroll Username: ")
+        CRPassword = input("Crunchyroll Password: ")
+        try:
+            crunchyLoginOutput = api.login(username=CRUsername, password=CRPassword)
+        except:
+            print("Login Error\n\nTry again to login")
+        else:
+            print("Login Success")
+            crunchyrollLoginAttempt = True
+else:
+    print("User not authorized. To gain premium user benefits launch with command line \"--auth\"\n")
+        
+#Search for a show
+userSearchInput = input("Search for a show: ")
 userSearchOutput = api.search_anime_series(userSearchInput)
 
-print("")
-for names in range(len(userSearchOutput)):
-    print("Show number {0}: ".format(names + 1) + userSearchOutput[names].name) #Prints out the show with a show number.
-try:
-    userResultInput = int(input("Please enter the show number of the show you would like to watch: ")) #Asks the user to input the show number.
-except ValueError:
-    print("This is not a valid show.")
-    quit()
+print("\n")
+
+while showResultsSelectionCorrect == False:
+    for names in range(len(userSearchOutput)):
+        print("Show number {0}: ".format(names + 1) + userSearchOutput[names].name) #Prints out the show with a show number.
+    try:
+        userResultInput = int(input("Please enter the show number of the show you would like to watch: ")) #Asks the user to input the show number.
+    except ValueError:
+        print("Number entered is not valid, try again")
+    else:
+        showResultsSelectionCorrect = True
 
 confirmation = input("Are you sure that {0} is the anime you want to watch?: ".format(userSearchOutput[userResultInput - 1].name)).lower() #Asks the user if the show that they want to watch is correct, returns it in a lower case format.
 
@@ -53,7 +76,7 @@ if confirmation == "yes": #If yes it will return the episodes.
 
     theURLForTheStream = returnEpisodeURL(episodeNumberInput, episodeNameInput)
     ydl_opts = {
-        "simulate" : simulateBoolean,
+        "simulate" : simulateDownloadBoolean,
         "subtitlesformat" : "ass",
         "subtitleslangs" : ['enUS'],
         "writesubtitles" : True,
