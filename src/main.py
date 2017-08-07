@@ -16,16 +16,7 @@ showSearchSuccess = False
 showResultsSelectionCorrect = False
 doLoginOrNot = False
 
-#Command line argument for debugging
-if "--simulate" in commandLineArguments:
-    simulateDownloadBoolean = True
-if "--auth" in commandLineArguments:
-    doLoginOrNot = True
-if "--help" in commandLineArguments:
-    #Todo: Write out all availiable command line arguments
-    #print("Test help")
-    quit()
-
+#Command line arguments
 for i in commandLineArguments[1:]:
     if i == "--simulate":
         simulateDownloadBoolean = True
