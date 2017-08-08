@@ -1,6 +1,30 @@
 # Crunchy Python CLI
 This is going to be a Crunchyroll API application written in python. This isn't going to be a big project so far. You will have to run this in a Linux or Windows command line.
 
+## Prerequisites
+
+In order to get the program running you will need to install these packages.
+
+```
+tlslite
+requests
+crunchyroll
+youtube-dl
+cfscrape
+node.js
+```
+The Python packages can be installed with the following command (delete the "sudo" on Windows):
+
+```
+sudo pip3 install tlslite requests crunchyroll youtube-dl cfscrape
+```
+
+Node-JS is also needed and can be installed on Debian-based distros with this:
+```
+sudo apt update
+sudo apt install nodejs
+```
+
 ## Getting Started
 
 In order to get started git clone this project in a directory using the command:
@@ -34,33 +58,7 @@ The avaliable command line arguments are:
 --queue
 ```
 
-
-## Prerequisites
-
-In order to get the program running you will need to install these packages.
-
-```
-tlslite
-requests
-crunchyroll
-youtube-dl
-cfscrape
-node.js
-```
-The Python packages can be installed with the following command (delete the "sudo" on Windows):
-
-```
-sudo pip3 install tlslite requests crunchyroll youtube-dl cfscrape
-```
-
-Node-JS is also needed and can be installed on Debian-based distros with this:
-```
-sudo apt update
-sudo apt install nodejs
-```
-
-
-## Authors
+## Contributors
 
 * **Mar2ck** - *Creator of the project.* - [Mar2ck](https://github.com/Mar2ck)
 
