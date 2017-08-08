@@ -60,7 +60,7 @@ if queueArgument == True:
         userQueueItemNumber = 1
         for userQueueItem in userQueue:
             print("{0}: {1}".format(userQueueItemNumber, userQueueItem.name))
-            userQueueItemNumber = userQueueItemNumber + 1
+            userQueueItemNumber += 1
     else:
         print("Queue feature only works when logged in. Use \"--auth\" to login")
         quit()
@@ -94,7 +94,7 @@ else:
         for x in userEpisodes:
             print("[{0}] Episode {1}: {2}".format(x.media_id, x.episode_number, x.name)) #Prints the available list of episodes.
         episodeNumberInput = input("Input the id of the episode you want to watch: ")
-        
+
         ep = [e for e in userEpisodes if e.media_id == episodeNumberInput][0] #Simple list comprehension, returns the actual episode the user is trying to view.
         episodePremiumOnly = not(bool(ep.free_available)) #True if premium account is needed to watch
         episodeMediaID = ep.media_id #Unique episode identifier
@@ -102,7 +102,7 @@ else:
 
         theURLForTheStream = episodeURL
         #print(crunchyrollScraperAPI.get_media_formats(episodeMediaID)) #Returns the availiable qualities for selected episode
-        
+
         ydl_opts = {
             "simulate" : simulateDownloadBoolean,
             "subtitlesformat" : "ass",
@@ -111,4 +111,3 @@ else:
         }
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             ydl.download([theURLForTheStream])
-        
