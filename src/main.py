@@ -35,7 +35,7 @@ for argumentItem in commandLineArguments[1:]:
         #print("Test help")
         quit()
     else:
-        print("Unrecognised argument " + i + "\n")
+        print("Unrecognised argument; please try again.\n")
 
 #User Authentication
 if doLoginOrNot == True:
