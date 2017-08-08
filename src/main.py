@@ -7,6 +7,13 @@ import requests
 import youtube_dl
 import sys
 import getpass
+import platform
+
+#User's OS ("Windows" or "Linux")
+userOperatingSystem = platform.system()
+
+#Convert mp4 and ass to mkv with ffmpeg
+#ffmpeg -i video.mp4 -i subtitle.enUS.ass -map 0 -map 1 -c copy -metadata:s:s:0 language=eng -disposition:s:0 default output.mkv
 
 #Starting variables
 commandLineArguments = sys.argv
@@ -14,6 +21,7 @@ crunchyrollMetaAPI = MetaApi()
 crunchyrollScraperAPI = ScraperApi(connector=requests)
 simulateDownloadBoolean = False
 queueArgument = False
+episodeNumberInput = ""
 
 #Loop variables
 crunchyrollLoginAttempt = False
@@ -35,7 +43,7 @@ for argumentItem in commandLineArguments[1:]:
         #print("Test help")
         quit()
     else:
-        print("Unrecognised argument " + i + "\n")
+        print("Unrecognised argument " + argumentItem + "\n")
 
 #User Authentication
 if doLoginOrNot == True:
@@ -86,28 +94,42 @@ else:
         else:
             showResultsSelectionCorrect = True
 
-    confirmation = input("Are you sure that {0} is the anime you want to watch?: ".format(userSearchOutput[userResultInput - 1].name)).lower() #Asks the user if the show that they want to watch is correct, returns it in a lower case format.
+    #Asks the user if the show that they want to watch is correct, returns it in a lower case format.
+    confirmation = input("Are you sure that {0} is the anime you want to watch?: ".format(userSearchOutput[userResultInput - 1].name)).lower()
 
     if confirmation == "yes": #If yes it will return the episodes.
         print("These are the list of episodes available to watch. \n")
         userEpisodes = crunchyrollMetaAPI.list_media(userSearchOutput[userResultInput - 1]) #Lists the media of the series they are trying to watch.
+        #Number of episodes show has availiable
+        userEpisodeNumber = len(userEpisodes)
         for x in userEpisodes:
-            print("[{0}] Episode {1}: {2}".format(x.media_id, x.episode_number, x.name)) #Prints the available list of episodes.
-        episodeNumberInput = input("Input the id of the episode you want to watch: ")
-
-        ep = [e for e in userEpisodes if e.media_id == episodeNumberInput][0] #Simple list comprehension, returns the actual episode the user is trying to view.
-        episodePremiumOnly = not(bool(ep.free_available)) #True if premium account is needed to watch
-        episodeMediaID = ep.media_id #Unique episode identifier
-        episodeURL = ep.url
-
-        theURLForTheStream = episodeURL
-        #print(crunchyrollScraperAPI.get_media_formats(episodeMediaID)) #Returns the availiable qualities for selected episode
+            print("[{0}] Episode {1}: {2}".format(userEpisodeNumber, x.episode_number, x.name)) #Prints the available list of episodes.
+            userEpisodeNumber -= 1
+        episodeNumberInput = input("Input the id number of the episode you want to watch (Type nothing to download everything): ")
 
         ydl_opts = {
             "simulate" : simulateDownloadBoolean,
             "subtitlesformat" : "ass",
             "subtitleslangs" : ['enUS'],
-            "writesubtitles" : True
+            "writesubtitles" : True,
+            "call_home" : False,
+            "outtmpl" : "%(season)s - Episode %(episode_number)s: %(episode)s.%(ext)s",
         }
+
+        #Simple list comprehension, returns the actual episode the user is trying to view.
+        if episodeNumberInput != "":
+            ep = [e for e in userEpisodes if e.media_id == episodeNumberInput][0]
+            episodePremiumOnly = not(bool(ep.free_available)) #True if premium account is needed to watch
+            episodeMediaID = ep.media_id #Unique episode identifier
+            episodeURL = ep.url
+            ydl_opts["playlist_items"] = episodeNumberInput
+        else:
+            episodeNumberInput = False
+
+        theURLForTheStream = userSearchOutput[userResultInput - 1].url
+        #print(crunchyrollScraperAPI.get_media_formats(episodeMediaID)) #Returns the availiable qualities for selected episode
+
+        print(ydl_opts)
+
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             ydl.download([theURLForTheStream])
