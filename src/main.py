@@ -43,8 +43,7 @@ for argumentItem in commandLineArguments[1:]:
         #print("Test help")
         quit()
     else:
-        print("Unrecognised argument " + argumentItem + "\n")
-
+        print("Unrecognised argument; please try again.\n")
 #User Authentication
 if doLoginOrNot == True:
     while crunchyrollLoginAttempt == False: #Asks user for Crunchyroll credentials and passes these to api so user can be authenticated
