@@ -122,9 +122,8 @@ else:
             episodePremiumOnly = not(bool(ep.free_available)) #True if premium account is needed to watch
             episodeMediaID = ep.media_id #Unique episode identifier
             episodeURL = ep.url
+            #Adds "playlist_items" to youtube-dl options (ydl_opts)
             ydl_opts["playlist_items"] = episodeNumberInput
-        else:
-            episodeNumberInput = False
 
         theURLForTheStream = userSearchOutput[userResultInput - 1].url
         #print(crunchyrollScraperAPI.get_media_formats(episodeMediaID)) #Returns the availiable qualities for selected episode
