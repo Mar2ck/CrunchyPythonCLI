@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#Created on 04/08/2017. All the background stuff is here.
+#Created on 04/08/2017. Version 0.0.2
 from __future__ import unicode_literals
 from crunchyroll.apis.meta import MetaApi
 from crunchyroll.apis.meta import ScraperApi
@@ -148,7 +148,7 @@ else:
         for x in userEpisodes:
             print("[{0}] Episode {1}: {2}".format(userEpisodeNumber, x.episode_number, x.name)) #Prints the available list of episodes.
             userEpisodeNumber -= 1
-        episodeNumberInput = input("Input the id number of the episode(s) you want to watch (Look at --help's Multi-Episode Selection Guide): ")
+        episodeNumberInput = input("Input the id number of the episode(s) you want to watch (Look at --help's \"Multi-Episode Selection Guide\" for help): ")
 
         ydl_opts = {
             "simulate" : simulateDownloadBoolean,
