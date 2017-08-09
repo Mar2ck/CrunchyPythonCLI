@@ -44,19 +44,29 @@ python3 main.py
 When  running the program, certain command line arguments can be passed to obtain different features.
 In order to use a command line argument, here is how you would do it in a terminal:
 ```
-python3 main.py --(commandLineArgument)
+crunchypythonapi --(commandLineArgument)
 ```
 If you want to do multiple command line arguments, you would do them as follows:
 ```
-python3 main.py --(firstArgument) --(secondArgument)
+crunchypythonapi --(firstArgument) --(secondArgument)
 ```
 
 The avaliable command line arguments are:
 ```
 --simulate
+```
+Program will skip the downloading the file. Used for debugging and testing
+
+```
 --auth
+```
+Will allow user to login with their Crunchyroll accounts to use their queue and gain premium privledges (1080p, Simulcasts, etc.)
+
+```
 --queue
 ```
+** Requires --auth be used aswell **
+Displays the users Crunchyroll queue (Work in progress)
 
 ## Contributors
 

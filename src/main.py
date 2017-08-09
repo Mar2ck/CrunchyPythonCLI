@@ -9,11 +9,19 @@ import sys
 import getpass
 import platform
 
+#TODO List
+'''
+- Let user select subtitle language
+- Let user pick more then one episode (Done 8/8/17)
+- Use ffmpeg to combine mp4 and ass from download into mkv
+#ffmpeg -i $SHOWFILENAME.mp4 -i $SHOWFILENAME.enUS.ass -map 0 -map 1 -c copy -metadata:s:s:0 language=eng -disposition:s:0 default $SHOWFILENAME.mkv
+- Login to crunchyroll via website so login cookie can be used to get premium content (Simulcasts, 1080p, Premium only shows)
+- Let users download shows from their queue
+- Finish help section (Done 8/8/17)
+'''
+
 #User's OS ("Windows" or "Linux")
 userOperatingSystem = platform.system()
-
-#Convert mp4 and ass to mkv with ffmpeg
-#ffmpeg -i video.mp4 -i subtitle.enUS.ass -map 0 -map 1 -c copy -metadata:s:s:0 language=eng -disposition:s:0 default output.mkv
 
 #Starting variables
 commandLineArguments = sys.argv
@@ -40,10 +48,46 @@ for argumentItem in commandLineArguments[1:]:
     	#list_queue
     elif argumentItem == "--help":
         #Todo: Write out all availiable command line arguments
-        #print("Test help")
+        print('''CrunchyPythonCLI - Usage: crunchypythoncli --[argument]
+
+--- Command Line Arguments ---
+
+When running the program, certain command line arguments can be passed to obtain different features. In order to use a command line argument, here is how you would do it in a terminal:
+
+>>>crunchypythonapi --(commandLineArgument)
+
+If you want to do multiple command line arguments, you would do them as follows:
+
+>>>crunchypythonapi --(firstArgument) --(secondArgument)
+
+The avaliable command line arguments are:
+
+--simulate
+Program will skip the downloading the file. Used for debugging and testing
+
+--auth
+Will allow user to login with their Crunchyroll accounts to use their queue and gain premium privledges (1080p, Simulcasts, etc.)
+
+--queue
+** Requires --auth be used aswell **
+Displays the users Crunchyroll queue (Work in progress)
+
+
+--- Multi-Episode Selection Guide ---
+
+Input for this is identical to youtube-dl's --playlist-items selection. The playlist number are denoted by [] in episode selection screen.
+
+Relevent exerpt from youtube-dl's README.md:
+"Specify indices of the videos in the playlist separated by commas like: "1,2,5,8" if you want to download videos indexed 1, 2, 5, 8 in the playlist.
+You can specify range: "1-3,7,10-13", it will download the videos at index 1, 2, 3, 7, 10, 11, 12 and 13."
+''')
         quit()
     else:
-        print("Unrecognised argument; please try again.\n")
+        print("Unrecognised argument \"" + argumentItem + "\"")
+        print("Use \"--help\" to see all availiable arguemnts.")
+        quit()
+
+
 #User Authentication
 if doLoginOrNot == True:
     while crunchyrollLoginAttempt == False: #Asks user for Crunchyroll credentials and passes these to api so user can be authenticated
@@ -104,7 +148,7 @@ else:
         for x in userEpisodes:
             print("[{0}] Episode {1}: {2}".format(userEpisodeNumber, x.episode_number, x.name)) #Prints the available list of episodes.
             userEpisodeNumber -= 1
-        episodeNumberInput = input("Input the id number of the episode you want to watch (Type nothing to download everything): ")
+        episodeNumberInput = input("Input the id number of the episode(s) you want to watch (Look at --help's Multi-Episode Selection Guide): ")
 
         ydl_opts = {
             "simulate" : simulateDownloadBoolean,
@@ -116,18 +160,26 @@ else:
         }
 
         #Simple list comprehension, returns the actual episode the user is trying to view.
-        if episodeNumberInput != "":
-            ep = [e for e in userEpisodes if e.media_id == episodeNumberInput][0]
-            episodePremiumOnly = not(bool(ep.free_available)) #True if premium account is needed to watch
-            episodeMediaID = ep.media_id #Unique episode identifier
-            episodeURL = ep.url
-            #Adds "playlist_items" to youtube-dl options (ydl_opts)
+        if episodeNumberInput == "":
+            print("Downloading all episodes")
+        else:
+            if "-" in episodeNumberInput or "," in episodeNumberInput:
+                print("Downloading multiple episodes")
+            if "," not in episodeNumberInput and "-" not in episodeNumberInput:
+                #Dict for selected episode
+                selectedEpisode = userEpisodes[len(userEpisodes) - int(episodeNumberInput)]
+                print("Downloading episode " + selectedEpisode.episode_number)
+                #True if premium account is needed to watch
+                episodePremiumOnly = not(bool(selectedEpisode.free_available))
+                #Unique episode identifier
+                episodeMediaID = selectedEpisode.media_id
+                #Website url for episode
+                episodeURL = selectedEpisode.url
+                #Adds "playlist_items" to youtube-dl options (ydl_opts)
             ydl_opts["playlist_items"] = episodeNumberInput
-
+        
         theURLForTheStream = userSearchOutput[userResultInput - 1].url
         #print(crunchyrollScraperAPI.get_media_formats(episodeMediaID)) #Returns the availiable qualities for selected episode
-
-        print(ydl_opts)
 
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             ydl.download([theURLForTheStream])
