@@ -12,6 +12,7 @@ import platform
 #TODO List
 '''
 - Let user select subtitle language
+- Force --search, default to --help not search
 - Let user pick more then one episode (Done 8/8/17)
 - Use ffmpeg to combine mp4 and ass from download into mkv
 #ffmpeg -i $SHOWFILENAME.mp4 -i $SHOWFILENAME.enUS.ass -map 0 -map 1 -c copy -metadata:s:s:0 language=eng -disposition:s:0 default $SHOWFILENAME.mkv
