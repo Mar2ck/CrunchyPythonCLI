@@ -8,6 +8,7 @@ import youtube_dl
 import sys
 import getpass
 import platform
+import logging
 
 #TODO List
 '''
@@ -30,7 +31,6 @@ crunchyrollMetaAPI = MetaApi()
 crunchyrollScraperAPI = ScraperApi(connector=requests)
 simulateDownloadBoolean = False
 queueArgument = False
-episodeNumberInput = ""
 
 #Loop variables
 crunchyrollLoginAttempt = False
@@ -154,11 +154,16 @@ else:
         ydl_opts = {
             "simulate" : simulateDownloadBoolean,
             "subtitlesformat" : "ass",
-            "subtitleslangs" : ['enUS'],
+            "listsubtitles" : True,
             "writesubtitles" : True,
             "call_home" : False,
             "outtmpl" : "%(season)s - Episode %(episode_number)s: %(episode)s.%(ext)s",
         }
+
+        #ydlCheckSubsOperators = {
+        #    "skip_download" : True,
+        #    "listsubtitles": True
+        #}
 
         #Simple list comprehension, returns the actual episode the user is trying to view.
         if episodeNumberInput == "":
@@ -177,10 +182,16 @@ else:
                 #Website url for episode
                 episodeURL = selectedEpisode.url
                 #Adds "playlist_items" to youtube-dl options (ydl_opts)
+
             ydl_opts["playlist_items"] = episodeNumberInput
-        
+            #ydlCheckSubsOperators["playlist_items"] = episodeNumberInput
+
         theURLForTheStream = userSearchOutput[userResultInput - 1].url
         #print(crunchyrollScraperAPI.get_media_formats(episodeMediaID)) #Returns the availiable qualities for selected episode
+
+        #with youtube_dl.YoutubeDL(ydlCheckSubsOperators) as ydl:
+        #    testOutput = ydl.list_subtitles([theURLForTheStream])
+        #    print(testOutput)
 
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             ydl.download([theURLForTheStream])
