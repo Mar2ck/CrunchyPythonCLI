@@ -154,7 +154,7 @@ else:
         ydl_opts = {
             "simulate" : simulateDownloadBoolean,
             "subtitlesformat" : "ass",
-            "subtitleslang" : ['enUS'],
+            "subtitleslangs" : ["enUS"],
             "writesubtitles" : True,
             "call_home" : False,
             "outtmpl" : "%(season)s - Episode %(episode_number)s: %(episode)s.%(ext)s",
