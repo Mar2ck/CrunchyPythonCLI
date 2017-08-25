@@ -43,7 +43,7 @@ if hardEncodeSubtitles == False:
     subprocess.run([ffmpegBinary, "-i", inputVideoFile, "-i", inputSubtitleFile, "-map", "0", "-map", "1", "-c", "copy", "-disposition:s:0", "default", outputMKVFile])
 else:
     #ffmpeg -i $SHOWFILENAME.mp4 -map 0 -vcodec libx264 -vf "ass=$SHOWFILENAME.enUS.ass" $SHOWFILENAME.mkv
-    hardsubOption = "subtitles=" + inputSubtitleFile + ":force_style='FontName=Ubuntu'"
+    hardsubOption = "subtitles=" + inputSubtitleFile
     print(hardsubOption)
     ffmpegOptions = [ffmpegBinary, "-i", inputVideoFile, "-map", "0", "-vcodec", "libx264", "-vf", hardsubOption, "-acodec", "copy", outputMKVFile]
     print(ffmpegOptions)
