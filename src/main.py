@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 #Created on 04/08/2017. Version 0.0.2
 from __future__ import unicode_literals
-from crunchyroll.apis.meta import MetaApi
-from crunchyroll.apis.meta import ScraperApi
+from crunchyroll.apis.meta import MetaApi, ScraperApi
 import requests
 import youtube_dl
 import sys
@@ -157,7 +156,7 @@ else:
             "subtitleslangs" : ["enUS"],
             "writesubtitles" : True,
             "call_home" : False,
-            "outtmpl" : "%(season)s - Episode %(episode_number)s: %(episode)s.%(ext)s",
+            "outtmpl" : "%(season)s - Episode %(episode_number)s %(episode)s.%(ext)s",
         }
 
         #ydlCheckSubsOperators = {
